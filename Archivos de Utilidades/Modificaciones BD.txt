@@ -1,0 +1,1 @@
+Eliminar la tabla de tipologia y pasar a enum
