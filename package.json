@@ -1,7 +1,7 @@
 {
   "name": "mygym",
   "version": "1.0.0",
-  "description": "",
+  "description": "Repositorio para el proyecto final de Hack a Boss",
   "main": "index.js",
   "scripts": {
     "server": "nodemon server.js",
@@ -27,5 +27,13 @@
     "nodemailer": "^6.7.8",
     "sharp": "^0.31.0",
     "uuid": "^9.0.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juanfrancisc/MyGym_HACKaBOSS.git"
+  },
+  "bugs": {
+    "url": "https://github.com/juanfrancisc/MyGym_HACKaBOSS/issues"
+  },
+  "homepage": "https://github.com/juanfrancisc/MyGym_HACKaBOSS#readme"
 }
