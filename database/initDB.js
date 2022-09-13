@@ -1,15 +1,13 @@
 /** Archivo que inicirá y reiniciará las tablas de la base de datos */
 
 // Requerir getDB
-const getDB = require("./getDB");
+const getDB = require('./getDB');
 
 // Tras instalar la dependencia npm i dotenv, y tener el fichero .env requerimos acceso a el
 require('dotenv').config();
 
-
 // Funcion que creará y borrará las tablas de la base de datos
-async function main(){
-
+async function main() {
     //Crear la variable que contine la conexion a la BBDD
     let conexion;
 
@@ -19,19 +17,17 @@ async function main(){
         //console.log(conexion)
 
         //Si todo va bien tenemos la conexion con la base de datos abierta
-        console.log('Conexion con base de datos realizada')
+        console.log('Conexion con base de datos realizada');
 
         // Eliminar las tablas de la base de datos si existe
         console.log('Eliminando tablas si existen...');
-        
+
         await conexion.query(`DROP TABLE IF EXISTS user_like_exercises`);
         await conexion.query(`DROP TABLE IF EXISTS exercises`);
         await conexion.query(`DROP TABLE IF EXISTS users`);
 
-
         // Crear las tablas de la base de datos
         console.log('Creando tablas...');
-
 
         console.log('Creando tabla de usuarios...');
         await conexion.query(`
@@ -39,11 +35,10 @@ async function main(){
                 id int unsigned PRIMARY KEY NOT NULL AUTO_INCREMENT,
                 name varchar(15) NOT NULL,
                 email varchar(100) NOT NULL UNIQUE,
-                password varchar(15) NOT NULL,
-                type_user enum('normal','admin') NOT NULL)`
-        );
+                password varchar(255) NOT NULL,
+                type_user enum('normal','admin') NOT NULL)`);
 
-        console.log('Creando tabla de ejercicios...');  
+        console.log('Creando tabla de ejercicios...');
         await conexion.query(
             `CREATE TABLE exercises (
                 id int unsigned PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -96,8 +91,8 @@ async function main(){
                 ('user2', 'user2@user1.com', '12345'),
                 ('user3', 'user3@user1.com', '12345'),
                 ('user4', 'user4@user1.com', '12345'),
-                ('user5', 'user5@user1.com', '12345');` 
-        )
+                ('user5', 'user5@user1.com', '12345');`
+        );
 
         console.log('Insertando ejercicios de ejemplo...');
         await conexion.query(
@@ -108,31 +103,24 @@ async function main(){
             ,(1, 'Nado a Crol', 'Este estilo es de forma alternada, mientras uno de los brazos del nadador se mueve en el aire con la palma hacia abajo dispuesta a ingresar al agua, y el codo relajado, el otro brazo avanza bajo el agua','Natacion', 'foto.jpg')`
         );
 
-        console.log('Insertando datos de favorios de ejemplo....')
+        console.log('Insertando datos de favorios de ejemplo....');
         await conexion.query(
             `INSERT INTO user_like_exercises (id_user, id_exercises) VALUES ('3', '2'),
             ('4', '1'),
             ('5', '4');`
-        )
+        );
 
         console.log('Datos de ejemplo insertados!');
-
     } catch (error) {
-        console.log(error.message)
-
+        console.log(error.message);
     } finally {
-
         //Siempre al final cerramos la conexion con la base de datos
         if (conexion) conexion.release();
 
         // Finalizamos la ejecucion de script
         process.exit();
     }
-
-
 }
-
-
 
 // Ejecutamos la función
 main();

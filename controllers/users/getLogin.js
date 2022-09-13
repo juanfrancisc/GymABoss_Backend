@@ -1,7 +1,7 @@
 const getDB = require('../../database/getDB');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { generateError } = require('../../herlpers');
+const { generateError } = require('../../helpers');
 require('dotenv').config();
 
 //Requerimos las dependencias.
@@ -24,11 +24,18 @@ const getLogin = async (req, res, next) => {
         //Se comprueba que existe un usuario con ese email en la base de datos.
 
         const [user] = await connection.query(
-            `SELECTid, email, password FROM users WHERE email = ?`,
+            `SELECT email, password FROM users WHERE email = ?`,
             [email]
         );
 
-        if (user.length < 1) {
+        let isValid;
+        if (user.length > 0) {
+            isValid = await bcrypt.compare(password, user[0].password);
+        }
+
+        //Otra manera de ver que la contraseña coincide con la del registro
+
+        if (user.length < 1 || !isValid) {
             throw generateError(
                 'No existe un usuario registrado con ese email',
                 404
@@ -36,7 +43,7 @@ const getLogin = async (req, res, next) => {
         }
         //Si no existe un usuario con ese email lanzamos un error
 
-        const validPassword = await bcrypt.copmpare(password, user[0].password);
+        const validPassword = await bcrypt.compare(password, user[0].password);
 
         //Si existe ese usuario comprobamos que las contraseñas coinciden con laas del usuario
 

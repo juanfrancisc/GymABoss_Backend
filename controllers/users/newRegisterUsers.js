@@ -1,18 +1,18 @@
 const getDB = require('../../database/getDB');
-const { generateError } = require('../../herlpers');
+const { generateError } = require('../../helpers');
 const bcrypt = require('bcrypt');
 
 //Requerimos las dependencias. Llamamos error, base de datos y el bcrypt para encriptar la contraseña
 
-const NewRegisterUser = async (req, res, next) => {
+const newRegisterUsers = async (req, res, next) => {
     let connection;
 
     //Creamos la constante de la función, que será asincrona y establecemos la conexión.
     try {
         connection = await getDB();
 
-        const { name, email, password, type_user } = req.body;
-        if (!name || !email || !password || !type_user) {
+        const { name, email, password } = req.body;
+        if (!name || !email || !password) {
             throw generateError(
                 'Faltan campos obligatorios por completar',
                 400
@@ -38,9 +38,9 @@ const NewRegisterUser = async (req, res, next) => {
         //Encriptamos la contraseña con hashedpassword y bcrypt(instalando esta dependencia).
 
         await connection.query(
-            `INSERT INTO users(name, email, password, type_user)
-            VALUES (?, ?, ?, ?)`,
-            [name, email, Hashedpassword, type_user]
+            `INSERT INTO users(name, email, password)
+            VALUES (?, ?, ?)`,
+            [name, email, Hashedpassword]
         );
         //Aquí se inserta el nuevo usuario, con el nombre, email, contraseña y tipo de usuario.
 
@@ -59,5 +59,5 @@ const NewRegisterUser = async (req, res, next) => {
     }
 };
 
-module.exports = NewRegisterUser;
+module.exports = newRegisterUsers;
 //Se exporta la función

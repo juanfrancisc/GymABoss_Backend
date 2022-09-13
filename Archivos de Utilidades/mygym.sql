@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `id` int unsigned PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `name` varchar(15) NOT NULL,
   `email` varchar(100) NOT NULL UNIQUE,
-  `password` varchar(15) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `type_user` enum('normal','admin') NOT NULL
 );
 

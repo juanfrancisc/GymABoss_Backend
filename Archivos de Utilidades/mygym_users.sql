@@ -26,7 +26,7 @@ CREATE TABLE `users` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(15) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `password` varchar(15) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `type_user` enum('normal','admin') NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),

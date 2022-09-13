@@ -1,5 +1,5 @@
 const getDB = require('../../database/getDB');
-const { generateError } = require('../../herlpers');
+const { generateError } = require('../../helpers');
 
 ////Requerimos las dependencias.
 

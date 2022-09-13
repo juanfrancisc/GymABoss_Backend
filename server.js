@@ -7,21 +7,18 @@ const app = express();
 // Deserializamos el body en raw para leer los datos
 app.use(express.json());
 
-
 //////////////////
 /** MIDDLEWARE */
 //De usuario
 const isAdmin = require('./middlewares/isAdmin');
 const isAuth = require('./middlewares/isAuth');
 
-
 /////////////////////////
 /** CONTROLADORES */
 // De usuario
-const newRegisterUser = require('./controllers/users/newRegisterUser');
+const newRegisterUser = require('./controllers/users/newRegisterUsers');
 const getLogin = require('./controllers/users/getLogin');
 const getUser = require('./controllers/users/getUser');
-
 
 // De ejercicios
 const newExercises = require('./controllers/exercises/newExercise');
@@ -33,7 +30,6 @@ const getExercises = require('./controllers/exercises/getExcercises');
 //const postMail = require('./controllers/users/postMail');
 //const retrievePass = require('./controllers/users/retrievePass');
 
-
 /////////////////////////
 /** ENDPOINTS */
 // De usuario
@@ -43,10 +39,9 @@ const getExercises = require('./controllers/exercises/getExcercises');
 /** La siguiente linea es para verificar que el middleware de isAuth funciona */
 //app.post('/users/:idUser', isAuth)
 
-//app.post('/newRegisterUsers', newRegisterUser);
-//app.post('/getLogin', getLogin)
+app.post('/newRegisterUsers', newRegisterUser);
+app.post('/getLogin', getLogin);
 //app.get('/users/:idUser', getUser); //Recuperar datos del usuario
-
 
 // De ejercicios
 //app.get('/getExercises', isAuth,getExercises);
@@ -54,8 +49,6 @@ const getExercises = require('./controllers/exercises/getExcercises');
 //app.post('/newExercise', isAdmin,newExercises);
 //app.put('/modifyExercise/:idExperiencia', isAdmin, modifyExercises);
 //app.delete('/deleteExercise/:idExperiencia', isAdmin, deleteExercises);
-
-
 
 /////////////////////////////////////
 /** MIDDLEWARE de ERROR y NOT FOUND*/
@@ -65,7 +58,7 @@ app.use((error, req, res, next) => {
     //Mostramos el error, lo que tenga
     console.error(error);
 
-    // Asignamos el codigo del error, creamos una propiedad httpStatus en los endpoint 
+    // Asignamos el codigo del error, creamos una propiedad httpStatus en los endpoint
     // donde asignaremos el codigo correspodiente, si no existe daremos error 500
     res.status(error.httpStatus || 500);
 
@@ -74,17 +67,16 @@ app.use((error, req, res, next) => {
         status: 'Error',
         message: error.message,
     });
-
 });
 
 // Middleware de NOT FOUND - No encuentra la ruta
-app.use((req,res) => {
+app.use((req, res) => {
     res.status(404);
 
     res.send({
         status: 'Error',
         message: 'Not found',
-    })
+    });
 });
 
 /** FIN  MIDDLEWARE*/
