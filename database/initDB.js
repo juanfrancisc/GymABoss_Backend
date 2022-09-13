@@ -1,4 +1,4 @@
-/** Archi que inicirá y reiniciará las tablas de la base de datos */
+/** Archivo que inicirá y reiniciará las tablas de la base de datos */
 
 // Requerir getDB
 const getDB = require("./getDB");
@@ -26,7 +26,6 @@ async function main(){
         
         await conexion.query(`DROP TABLE IF EXISTS user_like_exercises`);
         await conexion.query(`DROP TABLE IF EXISTS exercises`);
-        //await conexion.query(`DROP TABLE IF EXISTS typology`);
         await conexion.query(`DROP TABLE IF EXISTS users`);
 
 
@@ -44,13 +43,6 @@ async function main(){
                 type_user enum('normal','admin') NOT NULL)`
         );
 
-        /*console.log('Creando tabla de tipologias...');
-        await conexion.query(`
-            CREATE TABLE typology (
-            id int unsigned PRIMARY KEY NOT NULL AUTO_INCREMENT,
-            title varchar(45) NOT NULL UNIQUE)`
-          );*/
-
         console.log('Creando tabla de ejercicios...');  
         await conexion.query(
             `CREATE TABLE exercises (
@@ -58,7 +50,6 @@ async function main(){
                 idUser int unsigned NOT NULL
                 title varchar(45) NOT NULL UNIQUE,
                 description text NOT NULL,
-                id_typology int unsigned NOT NULL,
                 photo varchar(100) NOT NULL,
                 typology enum('Natacion','Musculacion','Cardio','Relajacion') NOT NULL,
                 FOREIGN KEY (idUser) REFERENCES users(id)
@@ -108,11 +99,6 @@ async function main(){
                 ('user5', 'user5@user1.com', '12345');` 
         )
 
-        /*console.log('Insertando tipologias de ejemplo...');
-        await conexion.query(
-            `INSERT INTO typology (title) VALUES ('Cardio'), ('Piscina'),('Relajación'),('Musculación');`
-        );   */ 
-
         console.log('Insertando ejercicios de ejemplo...');
         await conexion.query(
             `INSERT INTO exercises (title, description, id_typology, typology, photo) VALUES 
@@ -145,6 +131,8 @@ async function main(){
 
 
 }
+
+
 
 // Ejecutamos la función
 main();
