@@ -11,8 +11,8 @@ app.use(express.json());
 //////////////////
 /** MIDDLEWARE */
 //De usuario
-const isAdmin = require('./middleware/isAdmin');
-const isAuth = require('./middleware/isAuth');
+const isAdmin = require('./middlewares/isAdmin');
+const isAuth = require('./middlewares/isAuth');
 
 
 /////////////////////////
@@ -25,8 +25,8 @@ const getUser = require('./controllers/users/getUser');
 
 // De ejercicios
 const newExercises = require('./controllers/exercises/newExercise');
-const modifyExercises = require('./controllers/exercises/modifyExercise');
-const deleteExercises = require('./controllers/exercises/deleteExercise');
+const modifyExercises = require('./controllers/exercises/modifyExercises');
+const deleteExercises = require('./controllers/exercises/deleteExercises');
 const getExercises = require('./controllers/exercises/getExcercises');
 
 // Pruebas de envio de correo y restablecimiento de contraseña
@@ -37,17 +37,23 @@ const getExercises = require('./controllers/exercises/getExcercises');
 /////////////////////////
 /** ENDPOINTS */
 // De usuario
-app.post('/newRegisterUsers', newRegisterUser);
-app.post('/getLogin', getLogin)
-app.get('/users/:idUser', getUser); //Recuperar datos del usuario
+/** Se comentan los endpoints para que no de error la ejecucion del servidor */
+/** La siguiente linea es para verificar que el middleware de isAdmin funciona */
+//app.post('/users/:idUser', isAdmin)
+/** La siguiente linea es para verificar que el middleware de isAuth funciona */
+//app.post('/users/:idUser', isAuth)
+
+//app.post('/newRegisterUsers', newRegisterUser);
+//app.post('/getLogin', getLogin)
+//app.get('/users/:idUser', getUser); //Recuperar datos del usuario
 
 
 // De ejercicios
-app.get('/getExercises', isAuth,getExercises);
+//app.get('/getExercises', isAuth,getExercises);
 // Preguntar isAuth por si no es necesario
-app.post('/newExercise', isAdmin,newExercises);
-app.put('/modifyExercise/:idExperiencia', isAdmin, modifyExercises);
-app.delete('/deleteExercise/:idExperiencia', isAdmin, deleteExercises);
+//app.post('/newExercise', isAdmin,newExercises);
+//app.put('/modifyExercise/:idExperiencia', isAdmin, modifyExercises);
+//app.delete('/deleteExercise/:idExperiencia', isAdmin, deleteExercises);
 
 
 
