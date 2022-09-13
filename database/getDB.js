@@ -9,8 +9,6 @@ require('dotenv').config();
 //
 const { MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DATABASE } = process.env;
 
-console.log(MYSQL_PASS);
-
 // Funcion que exportaremos y devuelve una conexion a la base de datos
 const getDB = async () => {
     let pool;
