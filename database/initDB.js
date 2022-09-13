@@ -44,8 +44,8 @@ async function main(){
                 type_user enum('normal','admin') NOT NULL)`
         );
 
-        console.log('Creando tabla de tipologias...');
-        /*await conexion.query(`
+        /*console.log('Creando tabla de tipologias...');
+        await conexion.query(`
             CREATE TABLE typology (
             id int unsigned PRIMARY KEY NOT NULL AUTO_INCREMENT,
             title varchar(45) NOT NULL UNIQUE)`
