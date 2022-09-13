@@ -47,7 +47,7 @@ async function main(){
         await conexion.query(
             `CREATE TABLE exercises (
                 id int unsigned PRIMARY KEY NOT NULL AUTO_INCREMENT,
-                idUser int unsigned NOT NULL
+                idUser int unsigned NOT NULL,
                 title varchar(45) NOT NULL UNIQUE,
                 description text NOT NULL,
                 photo varchar(100) NOT NULL,
@@ -101,16 +101,16 @@ async function main(){
 
         console.log('Insertando ejercicios de ejemplo...');
         await conexion.query(
-            `INSERT INTO exercises (title, description, id_typology, typology, photo) VALUES 
-            ('Sentadillas', 'Realimos agachadillas hasta media altura y mantenemos unos segundos, nos ponemos ergidos y volvemos a comenzar. Unas 20 repeticiones con 10 segundos de descanso entre ellas', '1', 'foto.jpg','Cardio')
-            ,('Abdominales', 'El ejercicio estándar de encogimiento abdominal se concentra en los músculos del estómago. Es un ejercicio eficaz y seguro que es ideal para principiantes, para ayudar a desarrollar músculos abdominales fuertes.', '1', 'foto.jpg','Musculacion')
-            ,('Flexiones', 'Las flexiones son un excelente ejercicio para trabajar los músculos del pecho y los brazos. Debido a la posición que usted tiene que mantener para hacer este ejercicio correctamente, también trabaja el núcleo, abdominales, piernas y espalda. Diferentes variaciones de las flexiones plantearán un nuevo desafío los mismos grupos musculares.', '4', 'foto.jpg','Cardio')
-            ,('Nado a Crol', 'Este estilo es de forma alternada, mientras uno de los brazos del nadador se mueve en el aire con la palma hacia abajo dispuesta a ingresar al agua, y el codo relajado, el otro brazo avanza bajo el agua', '2', 'foto.jpg','Natacion');`
+            `INSERT INTO exercises (idUser, title, description,  typology, photo) VALUES 
+            (1, 'Sentadillas', 'Realimos agachadillas hasta media altura y mantenemos unos segundos, nos ponemos ergidos y volvemos a comenzar. Unas 20 repeticiones con 10 segundos de descanso entre ellas','Cardio','foto.jpg')
+            ,(1, 'Abdominales', 'El ejercicio estándar de encogimiento abdominal se concentra en los músculos del estómago. Es un ejercicio eficaz y seguro que es ideal para principiantes, para ayudar a desarrollar músculos abdominales fuertes.', 'Musculacion', 'foto.jpg')
+            ,(1, 'Flexiones', 'Las flexiones son un excelente ejercicio para trabajar los músculos del pecho y los brazos. Debido a la posición que usted tiene que mantener para hacer este ejercicio correctamente, también trabaja el núcleo, abdominales, piernas y espalda. Diferentes variaciones de las flexiones plantearán un nuevo desafío los mismos grupos musculares.','Cardio', 'foto.jpg')
+            ,(1, 'Nado a Crol', 'Este estilo es de forma alternada, mientras uno de los brazos del nadador se mueve en el aire con la palma hacia abajo dispuesta a ingresar al agua, y el codo relajado, el otro brazo avanza bajo el agua','Natacion', 'foto.jpg')`
         );
 
         console.log('Insertando datos de favorios de ejemplo....')
         await conexion.query(
-            `INSERT INTO user_view_exercises (id_user, id_exercises) VALUES ('3', '2'),
+            `INSERT INTO user_like_exercises (id_user, id_exercises) VALUES ('3', '2'),
             ('4', '1'),
             ('5', '4');`
         )
