@@ -12,7 +12,7 @@ const deleteExercise = async (req, res, next) => {
         // Primero comprobamos que el ejercicio existe
         const [exercise] = await connection.query(
             `SELECT * FROM exercises WHERE id = ?`,
-            [idExercises]
+            [idExercise]
         );
 
         if (exercise.length < 1) {
@@ -22,7 +22,7 @@ const deleteExercise = async (req, res, next) => {
         // Si existe, procederemos a eliminar el ejercicio.
 
         await connection.query(`DELETE FROM exercises WHERE id = ?`, [
-            idExercises,
+            idExercise,
         ]);
 
         res.send({
