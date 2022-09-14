@@ -26,6 +26,11 @@ const modifyExercises = require('./controllers/exercises/modifyExercises');
 const deleteExercises = require('./controllers/exercises/deleteExercises');
 const getExercises = require('./controllers/exercises/getExcercises');
 
+//Botón like
+
+const userLikeExercises = require('./controllers/like/userLikeExercises');
+const addLike = require('./controllers/like/addLike');
+
 // Pruebas de envio de correo y restablecimiento de contraseña
 //const postMail = require('./controllers/users/postMail');
 //const retrievePass = require('./controllers/users/retrievePass');
@@ -41,7 +46,7 @@ const getExercises = require('./controllers/exercises/getExcercises');
 
 app.post('/newRegisterUsers', newRegisterUser);
 app.post('/getLogin', getLogin);
-//app.get('/users/:idUser', getUser); //Recuperar datos del usuario
+app.get('/users/:idUser', getUser); //Recuperar datos del usuario
 
 // De ejercicios
 //app.get('/getExercises', isAuth,getExercises);
@@ -49,6 +54,11 @@ app.post('/getLogin', getLogin);
 //app.post('/newExercise', isAdmin,newExercises);
 //app.put('/modifyExercise/:idExperiencia', isAdmin, modifyExercises);
 //app.delete('/deleteExercise/:idExperiencia', isAdmin, deleteExercises);
+
+//botón like
+
+app.get('/like/:idUser_Like_Exercises', userLikeExercises);
+app.post('/addLike', addLike);
 
 /////////////////////////////////////
 /** MIDDLEWARE de ERROR y NOT FOUND*/
