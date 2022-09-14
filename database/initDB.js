@@ -45,7 +45,7 @@ async function main() {
                 idUser int unsigned NOT NULL,
                 title varchar(45) NOT NULL UNIQUE,
                 description text NOT NULL,
-                photo varchar(100) NOT NULL,
+                photo varchar(100) ,
                 typology enum('Natacion','Musculacion','Cardio','Relajacion') NOT NULL,
                 FOREIGN KEY (idUser) REFERENCES users(id)
               )`

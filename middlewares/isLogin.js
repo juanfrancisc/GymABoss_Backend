@@ -11,7 +11,7 @@ const { generateError } = require('../helpers');
 require('dotenv').config();
 
 // Creamos la funcion para comprobar que el usuario esta logado
-const isAuth = async ( req, res, next ) => {
+const isLogin = async ( req, res, next ) => {
     let conexion;
 
     try {
@@ -28,15 +28,15 @@ const isAuth = async ( req, res, next ) => {
 
         // Variable que almacenará la info del token
         let tokenInfo;
-
+        
         // Desencriptar el token (cabecera de autorizacion) recibida
         try {
             tokenInfo = jwt.verify(authorization, process.env.SECRET);
-        } catch (error) {
+            } catch (error) {
             // Si el token no es valido, no es generado por nosotros
             throw generateError('No has iniciado sesion', 401);
-        }
-
+            }
+      
         // El token devuelve un id, seleccionamos de la base de datos al usuario con ese id
         const [user] = await conexion.query(
             `SELECT * FROM users WHERE id = ?`,[tokenInfo.id]
@@ -64,4 +64,4 @@ const isAuth = async ( req, res, next ) => {
 
 }
 
-module.exports = isAuth;
+module.exports = isLogin;

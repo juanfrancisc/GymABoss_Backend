@@ -1,1 +1,8 @@
 Eliminar la tabla de tipologia y pasar a enum
+
+
+Ejemplor para contar like´s:
+select count(l.id_exercises) 
+from exercises e inner join user_like_exercises l 
+where e.id=l.id_exercises  and l.id_exercises=2;
+

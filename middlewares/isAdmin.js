@@ -15,23 +15,17 @@ const isAdmin = async ( req, res, next ) => {
         conexion = await getDB();
 
         //Recuperamos el id del usuario
-        //const idReqUser = req.userAuth.id;
-        const { idUser } = req.params;
+        const idReqUser = req.userAuth.id;
 
         const [typeUser] = await conexion.query(
-            `Select type_user from users where id = ?`,[idUser]
+            `Select type_user from users where id = ?`,[idReqUser]
         );
+        //console.log(typeUser)
         
         //Si el usuario no es de tipo admin
         if (typeUser[0].type_user !== 'admin'){
             throw generateError ('El usuario logado NO es de tipo admin', 409)
         }
-
-        // Si todo OK
-        res.send ({
-            status: 'OK',
-            message: `El usuario con ${idUser} es de tipo ${typeUser[0].type_user}`,
-        });
 
         next();
     } catch (error) {

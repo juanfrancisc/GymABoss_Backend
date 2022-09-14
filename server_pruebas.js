@@ -1,25 +1,28 @@
 // Requerimos el express
 const express = require('express');
-// Requerimos morgan para que nos muestre mas informacion en consola
-const morgan = require('morgan');
 
-// Requerimos fileUpload para poder subir ficheros
-const fileUpload = require('express-fileupload');
+
 
 // Creamos la aplicacion/servidor con express
 const app = express();
 
-app.use(morgan('dev'));
-app.use(fileUpload());
+app.use(express.static('static'));
+
+
 
 // Deserializamos el body en raw para leer los datos
 app.use(express.json());
+
+//app
 
 //////////////////
 /** MIDDLEWARE */
 //De usuario
 const isAdmin = require('./middlewares/isAdmin');
 const isLogin = require('./middlewares/isLogin');
+
+//De ejercicios
+const uploadPhoto = require('./controllers/exercises/uploadPhoto');
 
 /////////////////////////
 /** CONTROLADORES */
@@ -33,12 +36,7 @@ const newExercises = require('./controllers/exercises/newExercise');
 const modifyExercises = require('./controllers/exercises/modifyExercises');
 const deleteExercises = require('./controllers/exercises/deleteExercises');
 const getExercises = require('./controllers/exercises/getExercises');
-const uploadPhoto = require('./controllers/exercises/uploadPhoto');
 const listExercises = require('./controllers/exercises/listExercises');
-
-//Botón like
-const userLikeExercises = require('./controllers/like/userLikeExercises');
-const addLike = require('./controllers/like/addLike');
 
 // Pruebas de envio de correo y restablecimiento de contraseña
 //const postMail = require('./controllers/users/postMail');
@@ -50,25 +48,18 @@ const addLike = require('./controllers/like/addLike');
 /** Se comentan los endpoints para que no de error la ejecucion del servidor */
 /** La siguiente linea es para verificar que el middleware de isAdmin funciona */
 //app.post('/users/:idUser', isAdmin)
-/** La siguiente linea es para verificar que el middleware de isAuth funciona */
-//app.post('/users/:idUser', isAuth)
 
 app.post('/newRegisterUsers', newRegisterUser);
 app.post('/getLogin', getLogin);
-app.get('/users/:idUser', getUser); //Recuperar datos del usuario
+//app.get('/users/:idUser', getUser); //Recuperar datos del usuario
 
 // De ejercicios
-app.put('/uploadPhoto', isLogin, isAdmin, uploadPhoto)
+app.put('/uploadPhoto', uploadPhoto)
 app.get('/listExercises', isLogin, listExercises);
 // Preguntar isAuth por si no es necesario
 app.post('/newExercise', isLogin, isAdmin, newExercises);
 //app.put('/modifyExercise/:idExperiencia', isAdmin, modifyExercises);
 //app.delete('/deleteExercise/:idExperiencia', isAdmin, deleteExercises);
-
-//botón like
-
-app.get('/like/:idUser_Like_Exercises', userLikeExercises);
-app.post('/addLike', addLike);
 
 /////////////////////////////////////
 /** MIDDLEWARE de ERROR y NOT FOUND*/

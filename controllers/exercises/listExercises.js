@@ -20,17 +20,24 @@ const listExercises = async (req, res, next) => {
             ? direction
             : 'DESC';
 
-        // Realizar una consulta a la base de datos para recuperar los productos
-        let consulta = 'SELECT * FROM exercises';
+        /** Consulta para la BBDD */
+        /** SELECT e.title,l.id_exercises, COUNT(*) AS n_like 
+         * FROM user_like_exercises l INNER JOIN exercises e ON e.id=l.id_exercises 
+         * GROUP BY id_exercises ORDER by n_like DESC; */
 
-        [consulta] = await connection.query(
+        // Realizar una consulta a la base de datos para recuperar los productos
+        let consulta = 'SELECT e.title,l.id_exercises, COUNT(*) AS n_like FROM user_like_exercises l INNER JOIN exercises e ON e.id=l.id_exercises GROUP BY id_exercises ORDER by n_like DESC;';
+
+        /*[consulta] = await connection.query(
             consulta + ` ORDER BY ${orderBy} ${orderDirection}`,
             ['title']
-        );
+        );*/
+
+        const [datos] = await connection.query(consulta)
 
         res.send({
             status: 'Ok',
-            data: consulta,
+            data: datos,
         });
     } catch (error) {
         // Si ocurre algun error lo pasamos (en el servidor lo captura el middleware de error para mostrarlo)

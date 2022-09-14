@@ -9,8 +9,8 @@ const newExercise = async (req, res, next) => {
 
         // Obtenemos los datos necesarios.
         const { idUser, title, description, typology } = req.body;
-
-        if (!idUser || !title || !description || !typology) {
+        
+        if (!idUser || !title || !description || !typology ) {
             throw generateError('Faltan campos obligatorios', 400);
         }
 
@@ -34,6 +34,7 @@ const newExercise = async (req, res, next) => {
                 409
             );
         }
+        
 
         // Insertamos el nuevo ejercicio en la base de datos.
         await connection.query(
@@ -46,6 +47,7 @@ const newExercise = async (req, res, next) => {
         res.send({
             status: 'Ok',
             message: 'Ejercicio creado con éxito',
+            data: {idUser: idUser, title: title}
         });
     } catch (error) {
         next(error);

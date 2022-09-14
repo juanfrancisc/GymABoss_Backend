@@ -22,9 +22,9 @@ const getLogin = async (req, res, next) => {
         }
 
         //Se comprueba que existe un usuario con ese email en la base de datos.
-
+        //Se necesita obteber tambien el id para luego añadirlo al tokenInfo
         const [user] = await connection.query(
-            `SELECT email, password FROM users WHERE email = ?`,
+            `SELECT id, email, password FROM users WHERE email = ?`,
             [email]
         );
 
@@ -32,6 +32,7 @@ const getLogin = async (req, res, next) => {
         if (user.length > 0) {
             isValid = await bcrypt.compare(password, user[0].password);
         }
+
 
         //Otra manera de ver que la contraseña coincide con la del registro
 
@@ -52,7 +53,7 @@ const getLogin = async (req, res, next) => {
         }
 
         //Si no coinciden las contraseñas damos un error
-
+        //Aqui añadimos el id del usuario al tokenInfo
         const tokenInfo = {
             id: user[0].id,
         };
