@@ -8,20 +8,20 @@ const modifyExercises = async (req, res, next) => {
         connection = await getDB();
 
         // Recuperamos el id del ejercicio de los params
-        const { idExercises } = req.params;
+        const { idExercise } = req.params;
 
         // Recuperamos los datos del cuerpo de la peticion
-        const { title, description } = req.body;
+        const { title, description, typology, photo } = req.body;
 
         // Si no envia nada para editar, lanzaremos un error
-        if (!title && !description) {
-            throw generateError('No se ha modificado ningún dato.', 400);
+        if (!title || !description || !typology || !photo) {
+            throw generateError('No se ha insertado ningún nuevo dato.', 400);
         }
 
         // Seleccionamos los datos antiguos del ejercicio
         const [exercise] = await connection.query(
-            `SELECT title, description FROM exercises WHERE id = ?`,
-            [idExercises]
+            `SELECT title, description, typology, photo FROM exercises WHERE id = ?`,
+            [idExercise]
         );
 
         // Actualizamos la tabla exercises con los nuevos datos
@@ -31,9 +31,11 @@ const modifyExercises = async (req, res, next) => {
               description = ?
               WHERE id = ?`,
             [
-                title || product[0].title,
-                description || product[0].description,
-                idExercises,
+                title || exercise[0].title,
+                description || exercise[0].description,
+                typology || exercise[0].typology,
+                photo || exercise[0].photo,
+                idExercise,
             ]
         );
 
