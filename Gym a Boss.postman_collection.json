@@ -1,0 +1,327 @@
+{
+	"info": {
+		"_postman_id": "cc7596d4-0c88-42fe-b15d-68009a7e4929",
+		"name": "Gym a Boss",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "isAdmin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "newRegisterUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Juan\",\r\n    \"email\":\"juan@juan.com\",\r\n    \"password\":\"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/newRegisterUsers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"newRegisterUsers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"juan@juan.com\",\r\n    \"password\":\"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/getlogin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"getlogin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remenberPass",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"juanfrancisc@hotmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/remenberPass",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"remenberPass"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Exercises",
+			"item": [
+				{
+					"name": "newExercise",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNjYzMjIxMDQzLCJleHAiOjE2Njc1NDEwNDN9.Z6uA6t2FuGQvPnfdhzKF-J_Iu3Zclw1_3eS6vIkGUVM",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "/C:/Users/Juanfran/Pictures/1efcd92c-ac62-42c2-a4a9-d5075d752d31.jpg"
+								},
+								{
+									"key": "idUser",
+									"value": "9",
+									"type": "default"
+								},
+								{
+									"key": "title",
+									"value": "Zancada Otro 2",
+									"type": "default"
+								},
+								{
+									"key": "description",
+									"value": "Otra prueba de ejercicion con subida de foto en un solo paso ",
+									"type": "default"
+								},
+								{
+									"key": "typology",
+									"value": "Natacion",
+									"type": "default"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/newExercise",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"newExercise"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addPhoto",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNjYzMTYzMjQwLCJleHAiOjE2Njc0ODMyNDB9.gfRD2efyrxJqpaAxuAL-53hLJVMXqGWYaoRqS2KrR6c",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "/C:/Users/Juanfran/Pictures/3c3 toda pista1.jpg"
+								},
+								{
+									"key": "title",
+									"value": "Prueba press banca 99",
+									"type": "default"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/uploadPhoto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"uploadPhoto"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listExercises",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNjYzMTYzMjQwLCJleHAiOjE2Njc0ODMyNDB9.gfRD2efyrxJqpaAxuAL-53hLJVMXqGWYaoRqS2KrR6c",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4000/listExercises",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"listExercises"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "modifyExercise",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNjYzMjIxMDQzLCJleHAiOjE2Njc1NDEwNDN9.Z6uA6t2FuGQvPnfdhzKF-J_Iu3Zclw1_3eS6vIkGUVM",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "/C:/Users/Juanfran/Pictures/800px-Back-to-the-future-logo.svg.png"
+								},
+								{
+									"key": "idExercise",
+									"value": "12",
+									"type": "default",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4000/modifyExercises/12",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"modifyExercises",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteExercise",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNjYzMjIxMDQzLCJleHAiOjE2Njc1NDEwNDN9.Z6uA6t2FuGQvPnfdhzKF-J_Iu3Zclw1_3eS6vIkGUVM",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4000/deleteExercise/13",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"deleteExercise",
+								"13"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

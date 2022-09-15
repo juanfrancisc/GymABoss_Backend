@@ -10,19 +10,39 @@ const addLike = async (req, res, next) => {
         connection = await getDB();
 
         //Establecemos conexión con la BBDD
+        const idReqUser = req.userAuth.id
 
-        const { idUser, idExercises } = req.body;
+        //const { idUser, idExercises } = req.params;
+        const { idExercises } = req.params;
 
-        await connection.query(
+        const [isLike] = await connection.query(
+            `SELECT * FROM user_like_exercises WHERE id_user = ? AND id_exercises = ?`,[idReqUser,idExercises]
+        )
+
+        if (isLike.length < 1){
+            await connection.query(
             `INSERT INTO user_like_exercises(id_user, id_exercises)
             VALUES (?, ?)`,
-            [idUser, idExercises]
-        );
+            [idReqUser, idExercises]
+            )
+            res.send({
+                status: 'Ok',
+                message: 'te ha gustado',
+            });
+            
 
-        res.send({
-            status: 'Ok',
-            message: 'te ha gustado',
-        });
+        } else {
+            await connection.query(
+                `DELETE FROM user_like_exercises WHERE id_user = ? AND id_exercises = ?`,[idReqUser,idExercises])         
+            res.send({
+                status: 'Ok',
+                message: 'Ya no te gusta este ejercicio',
+            });
+        }
+
+        
+
+        
     } catch (error) {
         next(error);
         //aquí se lanza el error

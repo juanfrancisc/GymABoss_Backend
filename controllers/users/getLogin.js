@@ -38,7 +38,7 @@ const getLogin = async (req, res, next) => {
 
         if (user.length < 1 || !isValid) {
             throw generateError(
-                'No existe un usuario registrado con ese email',
+                'Email o Password incorrectas',
                 404
             );
         }

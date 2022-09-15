@@ -1,7 +1,7 @@
 const getDB = require('../../database/getDB');
 const { generateError } = require('../../helpers');
 
-const getExercises = async (req, res, next) => {
+const getExerciseId = async (req, res, next) => {
     let connection;
 
     try {
@@ -24,6 +24,8 @@ const getExercises = async (req, res, next) => {
             id: exercises[0].id,
             name: exercises[0].title,
             description: exercises[0].description,
+            typology: exercises[0].typology,
+            photo: exercises[0].photo
         };
 
         // Respondemos enviando la lista de los productos de la base de datos.
@@ -38,4 +40,4 @@ const getExercises = async (req, res, next) => {
     }
 };
 
-module.exports = getExercises;
+module.exports = getExerciseId;

@@ -32,7 +32,7 @@ const getUser = require('./controllers/users/getUser');
 const newExercises = require('./controllers/exercises/newExercise');
 const modifyExercises = require('./controllers/exercises/modifyExercises');
 const deleteExercises = require('./controllers/exercises/deleteExercises');
-const getExercises = require('./controllers/exercises/getExercises');
+const getExerciseId = require('./controllers/exercises/getExerciseId');
 //const uploadPhoto = require('./controllers/exercises/uploadPhoto');
 const listExercises = require('./controllers/exercises/listExercises');
 
@@ -63,13 +63,14 @@ app.get('/listExercises', isLogin, listExercises);
 app.post('/newExercise', isLogin, isAdmin, newExercises);
 app.post('/modifyExercises/:idExercise', isLogin, isAdmin, modifyExercises);
 app.delete('/deleteExercise/:idExercise', isLogin,isAdmin, deleteExercises);
+app.get('/getExerciseId/:idExcercise', isLogin, getExerciseId)
 //app.put('/modifyExercise/:idExercise', isAdmin, modifyExercises);
 
 
 //botón like
 
 app.get('/like/:idUser_Like_Exercises', userLikeExercises);
-app.post('/addLike', addLike);
+app.post('/addLike/:idExercises', isLogin, addLike);
 
 /////////////////////////////////////
 /** MIDDLEWARE de ERROR y NOT FOUND*/

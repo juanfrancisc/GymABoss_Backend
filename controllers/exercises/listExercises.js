@@ -26,12 +26,15 @@ const listExercises = async (req, res, next) => {
          * GROUP BY id_exercises ORDER by n_like DESC; */
 
         // Realizar una consulta a la base de datos para recuperar los productos
-        let consulta = 'SELECT e.title,l.id_exercises, COUNT(*) AS n_like FROM user_like_exercises l INNER JOIN exercises e ON e.id=l.id_exercises GROUP BY id_exercises ORDER by n_like DESC;';
+        //let consulta = 'SELECT e.title,l.id_exercises, COUNT(*) AS n_like FROM user_like_exercises l INNER JOIN exercises e ON e.id=l.id_exercises GROUP BY id_exercises ORDER by n_like DESC;';
 
+        let consulta = 'SELECT e.title, e.id, COUNT(l.id) AS n_like FROM user_like_exercises l RIGHT JOIN exercises e ON e.id=l.id_exercises GROUP BY e.id ORDER BY n_like DESC;'
         /*[consulta] = await connection.query(
             consulta + ` ORDER BY ${orderBy} ${orderDirection}`,
             ['title']
         );*/
+
+        console.log(consulta)
 
         const [datos] = await connection.query(consulta)
 

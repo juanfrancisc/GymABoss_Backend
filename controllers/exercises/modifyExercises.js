@@ -8,7 +8,7 @@ const modifyExercises = async (req, res, next) => {
         connection = await getDB();
         //console.log(req.files.photo)
         let photoName;
-        if (req.files || req.files.photo) {
+        if (req.files && req.files.photo) {
             photoName = await savePhoto(req.files.photo);
         }
         console.log(photoName)
@@ -26,7 +26,7 @@ const modifyExercises = async (req, res, next) => {
 
         // Seleccionamos los datos antiguos del ejercicio
         const [exercise] = await connection.query(
-            `SELECT title, description, typology FROM exercises WHERE id = ?`,
+            `SELECT title, description, typology, photo FROM exercises WHERE id = ?`,
             [idExercise]
         );
 
