@@ -33,7 +33,7 @@ const newExercises = require('./controllers/exercises/newExercise');
 const modifyExercises = require('./controllers/exercises/modifyExercises');
 const deleteExercises = require('./controllers/exercises/deleteExercises');
 const getExercises = require('./controllers/exercises/getExercises');
-const uploadPhoto = require('./controllers/exercises/uploadPhoto');
+//const uploadPhoto = require('./controllers/exercises/uploadPhoto');
 const listExercises = require('./controllers/exercises/listExercises');
 
 //Botón like
@@ -58,12 +58,13 @@ app.post('/getLogin', getLogin);
 app.get('/users/:idUser', getUser); //Recuperar datos del usuario
 
 // De ejercicios
-app.put('/uploadPhoto', isLogin, isAdmin, uploadPhoto)
+//app.put('/uploadPhoto', isLogin, isAdmin, uploadPhoto)
 app.get('/listExercises', isLogin, listExercises);
 // Preguntar isAuth por si no es necesario
 app.post('/newExercise', isLogin, isAdmin, newExercises);
-//app.put('/modifyExercise/:idExperiencia', isAdmin, modifyExercises);
-//app.delete('/deleteExercise/:idExperiencia', isAdmin, deleteExercises);
+app.post('/modifyExercises/:idExercise', isLogin, isAdmin, modifyExercises);
+//app.put('/modifyExercise/:idExercise', isAdmin, modifyExercises);
+//app.delete('/deleteExercise/:idExercise', isAdmin, deleteExercises);
 
 //botón like
 

@@ -1,20 +1,26 @@
 const getDB = require('../../database/getDB');
-const { generateError } = require('../../helpers');
+const { generateError, savePhoto } = require('../../helpers');
 
 const modifyExercises = async (req, res, next) => {
     let connection;
 
     try {
         connection = await getDB();
+        //console.log(req.files.photo)
+        let photoName;
+        if (req.files || req.files.photo) {
+            photoName = await savePhoto(req.files.photo);
+        }
+        console.log(photoName)
 
         // Recuperamos el id del ejercicio de los params
         const { idExercise } = req.params;
 
         // Recuperamos los datos del cuerpo de la peticion
-        const { title, description, typology, photo } = req.body;
+        const { title, description, typology } = req.body;
 
         // Si no envia nada para editar, lanzaremos un error
-        if (!title && !description && !typology) {
+        if (!title && !description && !typology && !photoName) {
             throw generateError('No se ha insertado ningún nuevo dato.', 400);
         }
 
@@ -24,17 +30,21 @@ const modifyExercises = async (req, res, next) => {
             [idExercise]
         );
 
+        console.log(idExercise)
+
         // Actualizamos la tabla exercises con los nuevos datos
         await connection.query(
             `UPDATE exercises 
                 SET title = ?,
                 description = ?,
-                typology = ?
+                typology = ?,
+                photo = ?
                 WHERE id = ?`,
             [
                 title || exercise[0].title,
                 description || exercise[0].description,
                 typology || exercise[0].typology,
+                photoName || exercise[0].photo,
                 idExercise,
             ]
         );
