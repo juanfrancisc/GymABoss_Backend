@@ -1,5 +1,5 @@
 const getDB = require('../../database/getDB');
-const { generateError } = require('../../helpers');
+const { generateError, deletePhoto } = require('../../helpers');
 
 const deleteExercise = async (req, res, next) => {
     let connection;
@@ -18,6 +18,8 @@ const deleteExercise = async (req, res, next) => {
         if (exercise.length < 1) {
             throw generateError('El ejercicio no existe', 404);
         }
+        const photoName = exercise[0].photo
+        await deletePhoto(photoName);
 
         // Si existe, procederemos a eliminar el ejercicio.
 

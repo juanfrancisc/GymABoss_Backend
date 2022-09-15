@@ -63,8 +63,9 @@ app.get('/listExercises', isLogin, listExercises);
 // Preguntar isAuth por si no es necesario
 app.post('/newExercise', isLogin, isAdmin, newExercises);
 app.post('/modifyExercises/:idExercise', isLogin, isAdmin, modifyExercises);
+app.delete('/deleteExercise/:idExercise', isLogin,isAdmin, deleteExercises);
 //app.put('/modifyExercise/:idExercise', isAdmin, modifyExercises);
-//app.delete('/deleteExercise/:idExercise', isAdmin, deleteExercises);
+
 
 //botón like
 
