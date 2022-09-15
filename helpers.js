@@ -1,7 +1,15 @@
 const { unlink } = require('fs/promises');
-const path = require('path'); // dependencia que nos sirve para crear rutas absolutas
-const sharp = require('sharp');
-const uuid = require('uuid');
+const path = require('path'); //Dependencia que nos sirve para crear rutas absolutas
+const sharp = require('sharp'); //Dependencia para el tratamiento de imagenes
+const uuid = require('uuid'); //Dependencia para crear un nombre unico a un fichero subirdo
+
+// Requerimos nodemailer para el envio de correos electronicos
+const  nodemailer = require('nodemailer');
+
+// Requerimos dotenv para el acceso a las variables
+require('dotenv').config();
+
+
 
 // Funcion de error
 function generateError(message, code){
@@ -54,8 +62,33 @@ async function deletePhoto(photoName) {
     }
 }
 
+function generateRandomPass(){
+    const caracteres = "abcdefghijkmnlopqrstuvwxyzABCDEFGHJKMNLOPQRSTUVWXYZ0123456789";
+    let newPassword = "";
+    for (let i = 0; i < 20 ; i++) {
+        newPassword +=caracteres.charAt(Math.floor(Math.random()*caracteres.length)); 
+    }
+    console.log(newPassword)
+
+    return newPassword;
+}
+
+// Acceso a las varaibles que necesito para los correos electronicos
+const { DOMINIO, USER_MAIL, PASS_MAIL }= process.env;
+
+//Creamos el objeto de transporte
+const  lanzarMail = nodemailer.createTransport({
+    service: DOMINIO,
+    auth: {
+        user: USER_MAIL,
+        pass: PASS_MAIL,
+    }
+});
+
 module.exports = { 
     generateError,
     savePhoto,
-    deletePhoto 
+    deletePhoto,
+    generateRandomPass,
+    lanzarMail
 };

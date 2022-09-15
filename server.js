@@ -40,9 +40,8 @@ const listExercises = require('./controllers/exercises/listExercises');
 const userLikeExercises = require('./controllers/like/userLikeExercises');
 const addLike = require('./controllers/like/addLike');
 
-// Pruebas de envio de correo y restablecimiento de contraseña
-//const postMail = require('./controllers/users/postMail');
-//const retrievePass = require('./controllers/users/retrievePass');
+// Envio de correo para restablecimiento de contraseña
+const remenberPass = require('./controllers/users/remenberPass');
 
 /////////////////////////
 /** ENDPOINTS */
@@ -52,10 +51,10 @@ const addLike = require('./controllers/like/addLike');
 //app.post('/users/:idUser', isAdmin)
 /** La siguiente linea es para verificar que el middleware de isAuth funciona */
 //app.post('/users/:idUser', isAuth)
-
 app.post('/newRegisterUsers', newRegisterUser);
 app.post('/getLogin', getLogin);
 app.get('/users/:idUser', getUser); //Recuperar datos del usuario
+app.post('/remenberPass', remenberPass)
 
 // De ejercicios
 //app.put('/uploadPhoto', isLogin, isAdmin, uploadPhoto)
