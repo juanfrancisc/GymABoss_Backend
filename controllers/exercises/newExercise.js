@@ -19,10 +19,13 @@ const newExercise = async (req, res, next) => {
         const photoName = await savePhoto(req.files.photo);
         console.log(photoName)
 
-        // Obtenemos los datos necesarios.
-        const { idUser, title, description, typology } = req.body;
+        const idReqUser = req.userAuth.id
+        //console.log("idReqUser: " + idReqUser)
 
-        if (!idUser || !title || !description || !typology) {
+        // Obtenemos los datos necesarios.
+        const { title, description, typology } = req.body;
+
+        if (!idReqUser || !title || !description || !typology) {
             throw generateError('Faltan campos obligatorios', 400);
         }
 
@@ -51,7 +54,7 @@ const newExercise = async (req, res, next) => {
         await connection.query(
             `INSERT INTO exercises (idUser, title, description, typology, photo)
     VALUES (?, ?, ?, ?, ?)`,
-            [idUser, title, description, typology, photoName]
+            [idReqUser, title, description, typology, photoName]
         );
 
         // Enviamos una respuesta.

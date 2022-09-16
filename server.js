@@ -35,6 +35,7 @@ const deleteExercises = require('./controllers/exercises/deleteExercises');
 const getExerciseId = require('./controllers/exercises/getExerciseId');
 //const uploadPhoto = require('./controllers/exercises/uploadPhoto');
 const listExercises = require('./controllers/exercises/listExercises');
+const getTypolgy = require('./controllers/exercises/getTypology')
 
 //Botón like
 const userLikeExercises = require('./controllers/like/userLikeExercises');
@@ -59,12 +60,12 @@ app.post('/remenberPass', remenberPass)
 // De ejercicios
 //app.put('/uploadPhoto', isLogin, isAdmin, uploadPhoto)
 app.get('/listExercises', isLogin, listExercises);
-// Preguntar isAuth por si no es necesario
+app.get('/getExerciseId/:idExcercise', isLogin, getExerciseId);
+app.get('/listExercises/:typology', isLogin, getTypolgy);
 app.post('/newExercise', isLogin, isAdmin, newExercises);
 app.post('/modifyExercises/:idExercise', isLogin, isAdmin, modifyExercises);
 app.delete('/deleteExercise/:idExercise', isLogin,isAdmin, deleteExercises);
-app.get('/getExerciseId/:idExcercise', isLogin, getExerciseId)
-//app.put('/modifyExercise/:idExercise', isAdmin, modifyExercises);
+
 
 
 //botón like
