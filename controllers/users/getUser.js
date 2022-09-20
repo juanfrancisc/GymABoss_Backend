@@ -11,13 +11,16 @@ const GetUser = async (req, res, next) => {
 
         //Conectamos con la base de datos
 
-        const { idUser } = req.params;
+        //const { idUser } = req.params;
+
+        const idReqUser = req.userAuth.id
+        console.log(idReqUser)
 
         //Usamos el path param del usuario del que queremos saber los datos
 
         const [user] = await connection.query(
             `SELECT * FROM users WHERE id = ?`,
-            [idUser]
+            [idReqUser]
         );
 
         //Comprobar que existe un usuario con esa id en la BBDD

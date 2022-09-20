@@ -59,13 +59,12 @@ const getLogin = async (req, res, next) => {
         };
 
         //Si el usuario indica un email y una contraseña correctas, generaremos un token de inicio de sesión.
-
         const token = jwt.sign(tokenInfo, process.env.SECRET, {
             expiresIn: '50d',
         });
 
-        //Se crea el token
 
+        //Se crea el token
         res.send({
             status: 'Ok',
             authtoken: token,

@@ -6,14 +6,29 @@ const morgan = require('morgan');
 // Requerimos fileUpload para poder subir ficheros
 const fileUpload = require('express-fileupload');
 
+// Requerimos CORS
+const cors = require('cors');
+
 // Creamos la aplicacion/servidor con express
 const app = express();
+
+//Habilitamos CORS
+app.use(
+    cors({
+        origin: ['http://localhost:3000', 'http://127.0.0.1:3000'],
+    })
+);
+
+
 
 app.use(morgan('dev'));
 app.use(fileUpload());
 
 // Deserializamos el body en raw para leer los datos
 app.use(express.json());
+
+// Para declarar la ruta de los subida de imagenes
+app.use('/imagenes', express.static('./static/imagenes'));
 
 //////////////////
 /** MIDDLEWARE */
@@ -54,12 +69,14 @@ const remenberPass = require('./controllers/users/remenberPass');
 //app.post('/users/:idUser', isAuth)
 app.post('/newRegisterUsers', newRegisterUser);
 app.post('/getLogin', getLogin);
+app.post('/login', getLogin);
 app.get('/users/:idUser', getUser); //Recuperar datos del usuario
 app.post('/remenberPass', remenberPass)
 
 // De ejercicios
 //app.put('/uploadPhoto', isLogin, isAdmin, uploadPhoto)
 app.get('/listExercises', isLogin, listExercises);
+app.get('/getExercises', listExercises);
 app.get('/getExerciseId/:idExcercise', isLogin, getExerciseId);
 app.get('/listExercises/:typology', isLogin, getTypolgy);
 app.post('/newExercise', isLogin, isAdmin, newExercises);
