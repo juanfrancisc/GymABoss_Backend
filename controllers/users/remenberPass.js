@@ -18,7 +18,7 @@ const remenberPass = async (req, res, next) =>{
 
         // Recibibos el correo del usuario desde el body
         const { email } = req.body;
-        //console.log(email)
+        console.log(email)
 
         // Si no se declara ningun correo lanzamos un error
         if (!email){

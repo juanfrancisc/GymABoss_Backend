@@ -7,12 +7,13 @@ const getExerciseId = async (req, res, next) => {
     try {
         connection = await getDB();
 
-        const { idExercise } = req.params;
+        const { idExcercise } = req.params;
+        console.log(idExcercise)
 
         // Seleccionamos los datos del ejercicio de la base de datos.
         const [exercises] = await connection.query(
             `SELECT * FROM exercises where id = ?`,
-            [idExercise]
+            [idExcercise]
         );
 
         // Comprobamos si el ejercicio existe en nuestra base de datos

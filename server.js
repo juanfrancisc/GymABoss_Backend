@@ -67,7 +67,7 @@ const remenberPass = require('./controllers/users/remenberPass');
 //app.post('/users/:idUser', isAdmin)
 /** La siguiente linea es para verificar que el middleware de isAuth funciona */
 //app.post('/users/:idUser', isAuth)
-app.post('/newRegisterUsers', newRegisterUser);
+app.post('/register', newRegisterUser);
 app.post('/getLogin', getLogin);
 app.post('/login', getLogin);
 app.get('/users/:idUser', getUser); //Recuperar datos del usuario
@@ -78,6 +78,7 @@ app.post('/remenberPass', remenberPass)
 app.get('/listExercises', isLogin, listExercises);
 app.get('/getExercises', listExercises);
 app.get('/getExerciseId/:idExcercise', isLogin, getExerciseId);
+app.get('/verExercise/:idExcercise', getExerciseId);
 app.get('/listExercises/:typology', isLogin, getTypolgy);
 app.post('/newExercise', isLogin, isAdmin, newExercises);
 app.post('/modifyExercises/:idExercise', isLogin, isAdmin, modifyExercises);

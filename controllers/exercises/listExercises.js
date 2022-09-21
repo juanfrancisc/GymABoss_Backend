@@ -25,7 +25,7 @@ const listExercises = async (req, res, next) => {
          * FROM user_like_exercises l INNER JOIN exercises e ON e.id=l.id_exercises 
          * GROUP BY id_exercises ORDER by n_like DESC; */
 
-        let consulta = 'SELECT e.title, e.id, e.typology, e.photo, COUNT(l.id) AS n_like FROM user_like_exercises l RIGHT JOIN exercises e ON e.id=l.id_exercises GROUP BY e.id ORDER BY n_like DESC;'
+        let consulta = 'SELECT e.id, e.idUser, e.title, e.id, e.typology, e.photo, COUNT(l.id) AS n_like FROM user_like_exercises l RIGHT JOIN exercises e ON e.id=l.id_exercises GROUP BY e.id ORDER BY n_like DESC;'
 
         //console.log(consulta)
 

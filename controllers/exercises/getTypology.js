@@ -11,6 +11,7 @@ const getTypology = async (req, res, next) => {
         connection = await getDB();
 
         const { typology } = req.params;
+        console.log(typology)
 
         // Seleccionamos los datos del ejercicio de la base de datos.
         const [listTypology] = await connection.query(
