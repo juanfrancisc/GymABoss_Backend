@@ -70,7 +70,7 @@ const remenberPass = require('./controllers/users/remenberPass');
 app.post('/register', newRegisterUser);
 app.post('/getLogin', getLogin);
 app.post('/login', getLogin);
-app.get('/users/:idUser', getUser); //Recuperar datos del usuario
+app.get('/users', isLogin, getUser); //Recuperar datos del usuario
 app.post('/remenberPass', remenberPass)
 
 // De ejercicios
@@ -80,6 +80,7 @@ app.get('/getExercises', listExercises);
 app.get('/getExerciseId/:idExcercise', isLogin, getExerciseId);
 app.get('/verExercise/:idExcercise', getExerciseId);
 app.get('/listExercises/:typology', isLogin, getTypolgy);
+app.get('/getExercises/:typology', getTypolgy);
 app.post('/newExercise', isLogin, isAdmin, newExercises);
 app.post('/modifyExercises/:idExercise', isLogin, isAdmin, modifyExercises);
 app.delete('/deleteExercise/:idExercise', isLogin,isAdmin, deleteExercises);
