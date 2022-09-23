@@ -9,7 +9,7 @@ const listExercises = async (req, res, next) => {
         // Abrimos una nueva conexion a la base de datos
         connection = await getDB();
 
-        const { typology, title } = req.query;
+        const { typology, id, title } = req.query;
 
         const validTypologyOptions = ['cardio', 'musculacion', 'natacion', 'relajacion'];
 
@@ -31,6 +31,12 @@ const listExercises = async (req, res, next) => {
         if(typology){
             consulta += ` ${clause} e.typology LIKE ?`
             values.push(typology)
+            clause = " AND"
+        }
+
+        if(id){
+            consulta += ` ${clause} e.id LIKE ?`
+            values.push(id)
             clause = " AND"
         }
 
