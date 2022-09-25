@@ -9,9 +9,11 @@ require('dotenv').config();
 //
 const { MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DATABASE } = process.env;
 
+
+let pool;
 // Funcion que exportaremos y devuelve una conexion a la base de datos
 const getDB = async () => {
-    let pool;
+    //let pool;
 
     try {
         // Si tenemos conexiones libre, creamos una conexion nueva
@@ -27,8 +29,9 @@ const getDB = async () => {
             });
 
             //Ejecutar el metodo getConnection y dovolver una conexion libre
-            return await pool.getConnection();
+            //
         }
+        return await pool.getConnection();
     } catch (error) {
         console.error(error.message);
     }

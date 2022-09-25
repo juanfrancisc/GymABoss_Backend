@@ -14,7 +14,7 @@ const GetUser = async (req, res, next) => {
         //const { idUser } = req.params;
 
         const idReqUser = req.userAuth.id
-        console.log(idReqUser)
+        //console.log(req.userAuth)
 
         //Usamos el path param del usuario del que queremos saber los datos
 

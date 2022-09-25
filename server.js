@@ -45,6 +45,7 @@ const getUser = require('./controllers/users/getUser');
 
 // De ejercicios
 const newExercises = require('./controllers/exercises/newExercise');
+const newExerciseJF = require('./controllers/exercises/newExercise_pruebasJF')
 const modifyExercises = require('./controllers/exercises/modifyExercises');
 const deleteExercises = require('./controllers/exercises/deleteExercises');
 const getExerciseId = require('./controllers/exercises/getExerciseId');
@@ -70,20 +71,24 @@ const remenberPass = require('./controllers/users/remenberPass');
 app.post('/register', newRegisterUser);
 app.post('/getLogin', getLogin);
 app.post('/login', getLogin);
-app.get('/users', isLogin, getUser); //Recuperar datos del usuario
+app.get('/users', isLogin, getUser);
+app.get('/users/:id', isLogin, getUser); //Recuperar datos del usuario
 app.post('/remenberPass', remenberPass)
 
 // De ejercicios
 //app.put('/uploadPhoto', isLogin, isAdmin, uploadPhoto)
 app.get('/listExercises', isLogin, listExercises);
-app.get('/getExercises', listExercises);
+//app.get('/getExercises', listExercises);
+app.get('/getExercises', isLogin,listExercises);
 app.get('/getExerciseId/:idExcercise', isLogin, getExerciseId);
 app.get('/verExercise/:idExcercise', getExerciseId);
 app.get('/listExercises/:typology', isLogin, getTypolgy);
 app.get('/getExercises/:typology', getTypolgy);
-app.post('/newExercise', isLogin, isAdmin, newExercises);
+//app.post('/newExercise', isLogin, isAdmin, newExercises);
+app.post('/newExercise', isLogin, isAdmin, newExerciseJF);
 app.post('/modifyExercises/:idExercise', isLogin, isAdmin, modifyExercises);
 app.delete('/deleteExercise/:idExercise', isLogin,isAdmin, deleteExercises);
+//app.delete('/deleteExercise/:idExercise', deleteExercises);
 
 
 

@@ -53,6 +53,7 @@ async function deletePhoto(photoName) {
         let photoPath; // Variable para la ruta absoluta a la imagen a borrar
 
         photoPath = path.join(fileImageDir, photoName);
+        console.log(photoPath)
         
         // Eliminamos la imagen
         await unlink(photoPath);
