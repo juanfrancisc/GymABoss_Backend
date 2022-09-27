@@ -10,7 +10,9 @@ const addLike = async (req, res, next) => {
         connection = await getDB();
 
         //Establecemos conexión con la BBDD
+        console.log(req.userAuth)
         const idReqUser = req.userAuth.id
+        console.log(idReqUser)
 
         //const { idUser, idExercises } = req.params;
         const { idExercises } = req.params;

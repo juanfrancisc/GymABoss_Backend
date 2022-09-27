@@ -20,6 +20,7 @@ const isLogin = async ( req, res, next ) => {
 
         // Obtener la cabecera de autorizacion donde va a ir el token
         const { authorization } = req.headers;
+        //console.log({authorization})
 
         // Si no indica la cabecera de autorizacion lanzaremos un error
         if (!authorization) {
