@@ -32,7 +32,7 @@ const newExercise = async (req, res, next) => {
         // Si la descripción es demasiado corta lanzamos un error.
         if (description.length < 20) {
             throw generateError(
-                'Introduce más detalles sobre el ejercicio.',
+                'El campo descripción tiene menos de 20 caractéres, especifica más detalles sobre el ejercicio.',
                 400
             );
         }
