@@ -6,12 +6,12 @@ const modifyExercises = async (req, res, next) => {
 
     try {
         connection = await getDB();
-        //console.log(req.files.photo)
+
         let photoName;
+       
         if (req.files && req.files.photo) {
             photoName = await savePhoto(req.files.photo);
         }
-        console.log(photoName)
 
         // Recuperamos el id del ejercicio de los params
         const { idExercise } = req.params;
@@ -52,6 +52,7 @@ const modifyExercises = async (req, res, next) => {
         res.send({
             status: 'Ok',
             message: `El ejercicio con id ${idExercise} ha sido modificado con éxito!`,
+            title: `Has modificado el ejercicio ${title}`,
         });
     } catch (error) {
         next(error);

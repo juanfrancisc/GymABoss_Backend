@@ -60,6 +60,10 @@ const addLike = require('./controllers/like/addLike');
 // Envio de correo para restablecimiento de contraseña
 const remenberPass = require('./controllers/users/remenberPass');
 
+// Add Favorite
+const addFavorite = require('./controllers/favorites/addFavorite');
+const viewFavorites = require('./controllers/favorites/viewFavorites')
+
 /////////////////////////
 /** ENDPOINTS */
 // De usuario
@@ -96,6 +100,10 @@ app.delete('/deleteExercise/:idExercise', isLogin,isAdmin, deleteExercises);
 
 app.get('/like/:idUser_Like_Exercises', userLikeExercises);
 app.post('/addLike/:idExercises', isLogin, addLike);
+
+// Add Favorite
+app.post('/addFavorite/:idExercises', isLogin, addFavorite);
+app.post('/viewFavorites', isLogin, viewFavorites)
 
 /////////////////////////////////////
 /** MIDDLEWARE de ERROR y NOT FOUND*/

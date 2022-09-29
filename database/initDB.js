@@ -61,8 +61,8 @@ async function main() {
                 ON DELETE CASCADE
               )`
         );
-        /** Futura tabla de favoritos */
-        /*await conexion.query(
+        
+        await conexion.query(
             `CREATE TABLE user_favorites_exercises (
                 id int unsigned PRIMARY KEY NOT NULL AUTO_INCREMENT,
                 id_user int unsigned NOT NULL,
@@ -72,7 +72,7 @@ async function main() {
                 FOREIGN KEY (id_exercises) REFERENCES exercises (id)
                 ON DELETE CASCADE
               )`
-        );*/
+        );
 
         console.log('Tablas creadas!');
 
