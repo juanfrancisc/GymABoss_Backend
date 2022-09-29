@@ -133,7 +133,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNjYzOTMyMjI3LCJleHAiOjE2NjgyNTIyMjd9.Pj-u4TJgF7eccWlyh847VNS-2joFkd4ACNgML21w928",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNjY0NDM2OTU1LCJleHAiOjE2Njg3NTY5NTV9.mmIxNGnjdgXINqB6TDp9FicZ19QprVS0ivWWESVbz7Y",
 								"type": "default"
 							}
 						],
@@ -211,7 +211,7 @@
 								},
 								{
 									"key": "title",
-									"value": "Remo 22",
+									"value": "Remo 222",
 									"type": "default"
 								},
 								{
@@ -221,7 +221,7 @@
 								},
 								{
 									"key": "typology",
-									"value": "Musculacion",
+									"value": "Natacion",
 									"type": "default"
 								}
 							],
@@ -431,7 +431,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:4000/addLike/21",
+							"raw": "http://localhost:4000/addLike/84",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -439,37 +439,37 @@
 							"port": "4000",
 							"path": [
 								"addLike",
-								"21"
+								"84"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "getExercises",
+					"name": "getExercises?typology=",
 					"request": {
 						"method": "GET",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNjYzMjQwODIxLCJleHAiOjE2Njc1NjA4MjF9.bliM6FAIxX8hWqPmeKk9kYqnET56RhZ59pM64f2XVYU",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImlhdCI6MTY2NDQzMTU1NSwiZXhwIjoxNjY4NzUxNTU1fQ.xiZarZE5hytV2_ZGK7HYxQXXSEpN7fYOOpvzsJ4RWR4",
 								"type": "default"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:4000/getExerciseId?title=nadar",
+							"raw": "http://localhost:4000/getExercises?typology=cardio",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "4000",
 							"path": [
-								"getExerciseId"
+								"getExercises"
 							],
 							"query": [
 								{
-									"key": "title",
-									"value": "nadar"
+									"key": "typology",
+									"value": "cardio"
 								}
 							]
 						}
@@ -477,10 +477,16 @@
 					"response": []
 				},
 				{
-					"name": "getExercises/typology",
+					"name": "getExercises?id=",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImlhdCI6MTY2NDQzMTU1NSwiZXhwIjoxNjY4NzUxNTU1fQ.xiZarZE5hytV2_ZGK7HYxQXXSEpN7fYOOpvzsJ4RWR4",
+								"type": "default"
+							}
+						],
 						"url": {
 							"raw": "http://localhost:4000/getExercises?id=15",
 							"protocol": "http",
@@ -502,10 +508,53 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "addFavorite",
 					"request": {
-						"method": "GET",
-						"header": []
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNjY0NDM2OTU1LCJleHAiOjE2Njg3NTY5NTV9.mmIxNGnjdgXINqB6TDp9FicZ19QprVS0ivWWESVbz7Y",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4000/addFavorite/85",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"addFavorite",
+								"85"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "viewFavorites",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNjY0NDM2OTU1LCJleHAiOjE2Njg3NTY5NTV9.mmIxNGnjdgXINqB6TDp9FicZ19QprVS0ivWWESVbz7Y",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4000/viewFavorites",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"viewFavorites"
+							]
+						}
 					},
 					"response": []
 				}
