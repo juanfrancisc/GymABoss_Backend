@@ -11,22 +11,35 @@ const userLikeExercises = async (req, res, next) => {
 
         connection = await getDB();
 
-        const { idUser_Like_Exercises } = req.params;
+        const idReqUser = req.userAuth.id;
+
+        const {idExercises} = req.params;
+
+        /* const { idUser_Like_Exercises } = req.params;
+        console.log(req.params) */
 
         const [users_like_exercises] = await connection.query(
-            `SELECT * FROM user_like_exercises WHERE id = ?`,
-            [idUser_Like_Exercises]
+            `SELECT * FROM user_like_exercises WHERE id_exercises = ? AND id_user = ?`,
+            [ idExercises, idReqUser ]
         );
-        console.log(users_like_exercises);
 
-        if (users_like_exercises.length < 0) {
+        if (users_like_exercises.length <= 0) {
             throw generateError('Ejercicio sin like', 404);
         }
 
-        res.send({
+        if (users_like_exercises.length <= 0) {
+            res.send({
+                status: 'Ok',
+                message: 'NO',
+            });
+
+        } else {
+            res.send({
             status: 'Ok',
-            message: 'like marcado',
+            message: 'ckecked',
         });
+        }     
+
     } catch (error) {
         next(error);
         //aquí se lanza el error

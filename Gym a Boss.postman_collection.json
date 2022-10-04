@@ -514,12 +514,12 @@
 						"header": [
 							{
 								"key": "authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNjY0NDM2OTU1LCJleHAiOjE2Njg3NTY5NTV9.mmIxNGnjdgXINqB6TDp9FicZ19QprVS0ivWWESVbz7Y",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImlhdCI6MTY2NDQ0MjU3OCwiZXhwIjoxNjY4NzYyNTc4fQ.QhDnWARQPt_C_-uxcazLLn4-CoqNmkKmqU0W1JRkBcU",
 								"type": "default"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:4000/addFavorite/85",
+							"raw": "http://localhost:4000/addFavorite/84",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -527,7 +527,7 @@
 							"port": "4000",
 							"path": [
 								"addFavorite",
-								"85"
+								"84"
 							]
 						}
 					},
@@ -540,7 +540,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNjY0NDM2OTU1LCJleHAiOjE2Njg3NTY5NTV9.mmIxNGnjdgXINqB6TDp9FicZ19QprVS0ivWWESVbz7Y",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImlhdCI6MTY2NDQ0MjU3OCwiZXhwIjoxNjY4NzYyNTc4fQ.QhDnWARQPt_C_-uxcazLLn4-CoqNmkKmqU0W1JRkBcU",
 								"type": "default"
 							}
 						],

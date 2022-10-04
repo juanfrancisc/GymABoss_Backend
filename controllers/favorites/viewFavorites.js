@@ -22,7 +22,7 @@ const viewFavorites = async (req, res, next) => {
         // Si el array no tiene datos, mostramos un mensaje
         if (myFavorites.length < 1){
             res.send ({
-                status: 'OK',
+                status: '0',
                 message: 'No tienes ejercicios marcados como favoritos'
             })
         } 

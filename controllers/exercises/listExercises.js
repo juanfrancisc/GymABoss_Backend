@@ -9,7 +9,7 @@ const listExercises = async (req, res, next) => {
         // Abrimos una nueva conexion a la base de datos
         connection = await getDB();
 
-        const { typology, id, title } = req.query;
+        const { typology, id, title, description } = req.query;
 
         const validTypologyOptions = ['cardio', 'musculacion', 'natacion', 'relajacion'];
 
@@ -24,7 +24,9 @@ const listExercises = async (req, res, next) => {
          * FROM user_like_exercises l INNER JOIN exercises e ON e.id=l.id_exercises 
          * GROUP BY id_exercises ORDER by n_like DESC; */
 
-        let consulta = 'SELECT e.id, e.idUser, e.title, e.description, e.typology, e.photo, COUNT(l.id) AS n_like FROM user_like_exercises l RIGHT JOIN exercises e ON e.id=l.id_exercises'
+        let consulta = `SELECT e.id, e.idUser, e.title, e.description, e.typology, e.description, e.photo, COUNT(l.id) AS n_like 
+                        FROM user_like_exercises l 
+                        RIGHT JOIN exercises e ON e.id=l.id_exercises`
         
         let values = [];
         let clause = " WHERE";
@@ -44,6 +46,12 @@ const listExercises = async (req, res, next) => {
             consulta += ` ${clause} e.title LIKE ?`
             values.push(`%${title}%`)
         }
+
+        if (description){
+            consulta += `${clause} e.description LIKE ?`
+            values.push(`%${description}%`)
+        }
+        
         consulta += ` GROUP BY e.id ORDER BY n_like DESC`;
         //console.log(consulta)
 
