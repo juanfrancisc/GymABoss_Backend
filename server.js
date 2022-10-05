@@ -98,7 +98,7 @@ app.delete('/deleteExercise/:idExercise', isLogin,isAdmin, deleteExercises);
 
 //botón like
 
-app.get('/like/:idExercises', isLogin, userLikeExercises);
+app.get('/like', isLogin, userLikeExercises);
 app.post('/addLike/:idExercises', isLogin, addLike);
 
 // Add Favorite

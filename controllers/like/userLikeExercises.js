@@ -13,33 +13,30 @@ const userLikeExercises = async (req, res, next) => {
 
         const idReqUser = req.userAuth.id;
 
-        const {idExercises} = req.params;
+        /* const {idExercises} = req.params; */
 
         /* const { idUser_Like_Exercises } = req.params;
         console.log(req.params) */
 
-        const [users_like_exercises] = await connection.query(
+        /* const [users_like_exercises] = await connection.query(
             `SELECT * FROM user_like_exercises WHERE id_exercises = ? AND id_user = ?`,
             [ idExercises, idReqUser ]
-        );
+        ); */
+
+        const [likesExercise] = await connection.query (
+            `SELECT id_exercises FROM user_like_exercises WHERE id_user = ?`, [idReqUser]
+        )
+
+        const respLikes = likesExercise.map(x => x.id_exercises);
 
         /* if (users_like_exercises.length <= 0) {
             throw generateError('Ejercicio sin like', 404);
         } */
 
-        if (users_like_exercises.length <= 0) {
-            res.send({
-                status: 'Ok',
-                message: 'NO',
-                
-            });
-
-        } else {
-            res.send({
+        res.send({
             status: 'Ok',
-            message: 'ckecked',
-        });
-        }     
+            data: respLikes
+        })   
 
     } catch (error) {
         next(error);
