@@ -54,7 +54,7 @@ const listExercises = async (req, res, next) => {
         }
         
         consulta += ` GROUP BY e.id ORDER BY n_like DESC`;
-        console.log(consulta)
+        /* console.log(consulta) */
 
         const [datos] = await connection.query(consulta, values)
 

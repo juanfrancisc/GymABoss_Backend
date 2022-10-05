@@ -23,14 +23,15 @@ const userLikeExercises = async (req, res, next) => {
             [ idExercises, idReqUser ]
         );
 
-        if (users_like_exercises.length <= 0) {
+        /* if (users_like_exercises.length <= 0) {
             throw generateError('Ejercicio sin like', 404);
-        }
+        } */
 
         if (users_like_exercises.length <= 0) {
             res.send({
                 status: 'Ok',
                 message: 'NO',
+                
             });
 
         } else {

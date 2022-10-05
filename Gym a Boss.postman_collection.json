@@ -43,7 +43,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\":\"Juan\",\r\n    \"email\":\"juan@juan.com\",\r\n    \"password\":\"123456\"\r\n}",
+							"raw": "{\r\n    \"name\":\"Pepe\",\r\n    \"email\":\"juan1@juan.com\",\r\n    \"password\":\"123456\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -51,14 +51,20 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4000/newRegisterUsers",
+							"raw": "http://localhost:4000/register?id=1111",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "4000",
 							"path": [
-								"newRegisterUsers"
+								"register"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1111"
+								}
 							]
 						}
 					},
@@ -555,6 +561,40 @@
 								"viewFavorites"
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "user_like_exercise",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjY0ODcxMjQ1LCJleHAiOjE2NjkxOTEyNDV9.5mumdtFZBt6shkVQkE457f7R9bFdgElelIV9TPCPzds",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4000/like/15",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"like",
+								"15"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SearchParams",
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				}
