@@ -1,5 +1,7 @@
+/* const { validate } = require('uuid'); */
 const getDB = require('../../database/getDB');
-const { generateError, savePhoto } = require('../../helpers');
+const { generateError, savePhoto, validate } = require('../../helpers');
+const newExerciseSchema = require('../../schemas/newExerciseSchema');
 
 const newExercise = async (req, res, next) => {
     let connection;
@@ -27,6 +29,15 @@ const newExercise = async (req, res, next) => {
 
         if (!idReqUser || !title || !description || !typology) {
             throw generateError('Faltan campos obligatorios', 400);
+        }
+
+        await validate(newExerciseSchema, req.body)
+    
+        if (title.length < 3){
+            throw generateError(
+                'El titulo debe tener mas de 3 caractéres.',
+                400
+            );
         }
 
         // Si la descripción es demasiado corta lanzamos un error.

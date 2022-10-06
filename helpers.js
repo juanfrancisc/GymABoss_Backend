@@ -66,7 +66,7 @@ async function deletePhoto(photoName) {
 function generateRandomPass(){
     const caracteres = "abcdefghijkmnlopqrstuvwxyzABCDEFGHJKMNLOPQRSTUVWXYZ0123456789";
     let newPassword = "";
-    for (let i = 0; i < 20 ; i++) {
+    for (let i = 0; i < 10 ; i++) {
         newPassword +=caracteres.charAt(Math.floor(Math.random()*caracteres.length)); 
     }
     console.log(newPassword)
@@ -86,10 +86,21 @@ const  lanzarMail = nodemailer.createTransport({
     }
 });
 
+// Funcion que valida el schema con los datos ingresados
+async function validate(schema, data) {
+    try {
+        await schema.validateAsync(data);
+    } catch (error) {
+        error.httpStatus = 400; // Bad Request
+        throw error;
+    }
+}
+
 module.exports = { 
     generateError,
     savePhoto,
     deletePhoto,
     generateRandomPass,
-    lanzarMail
+    lanzarMail,
+    validate,
 };

@@ -18,6 +18,7 @@ const viewFavorites = async (req, res, next) => {
             `SELECT ex.title, ex.description, ex.photo, ex.typology, ex.id  FROM exercises ex INNER JOIN user_favorites_exercises fa ON ex.id=fa.id_exercises WHERE fa.id_user = ?`,
             [idReqUser]
         )
+        console.log(myFavorites)
 
         // Si el array no tiene datos, mostramos un mensaje
         if (myFavorites.length < 1){

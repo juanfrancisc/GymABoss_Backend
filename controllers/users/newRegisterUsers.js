@@ -1,6 +1,7 @@
 const getDB = require('../../database/getDB');
-const { generateError } = require('../../helpers');
+const { generateError, validate } = require('../../helpers');
 const bcrypt = require('bcrypt');
+const newUserSchema = require('../../schemas/newUserSchema');
 
 //Requerimos las dependencias. Llamamos error, base de datos y el bcrypt para encriptar la contraseña
 
@@ -12,6 +13,9 @@ const newRegisterUsers = async (req, res, next) => {
         connection = await getDB();
 
         const { name, email, password } = req.body;
+
+        await validate(newUserSchema, req.body)
+
         if (!name || !email || !password) {
             throw generateError(
                 'Faltan campos obligatorios por completar',
@@ -33,6 +37,7 @@ const newRegisterUsers = async (req, res, next) => {
                 409
             );
         }
+
         //Si ene sta consulta se devuelve algún dato, querrá decir que un usuario con ese mismo email ya existe.
         const Hashedpassword = await bcrypt.hash(password, 10);
         //Encriptamos la contraseña con hashedpassword y bcrypt(instalando esta dependencia).

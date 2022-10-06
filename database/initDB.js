@@ -22,6 +22,7 @@ async function main() {
         // Eliminar las tablas de la base de datos si existe
         console.log('Eliminando tablas si existen...');
 
+        await conexion.query(`DROP TABLE IF EXISTS user_favorites_exercisess`);
         await conexion.query(`DROP TABLE IF EXISTS user_like_exercises`);
         await conexion.query(`DROP TABLE IF EXISTS exercises`);
         await conexion.query(`DROP TABLE IF EXISTS users`);

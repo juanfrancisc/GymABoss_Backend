@@ -1,5 +1,6 @@
 const getDB = require('../../database/getDB');
-const { generateError, savePhoto } = require('../../helpers');
+const { generateError, savePhoto, validate } = require('../../helpers');
+const newExerciseSchema = require('../../schemas/newExerciseSchema');
 
 const modifyExercises = async (req, res, next) => {
     let connection;
@@ -18,6 +19,8 @@ const modifyExercises = async (req, res, next) => {
 
         // Recuperamos los datos del cuerpo de la peticion
         const { title, description, typology } = req.body;
+
+        await validate(newExerciseSchema, req.body)
 
         // Si no envia nada para editar, lanzaremos un error
         if (!title && !description && !typology && !photoName) {
