@@ -31,7 +31,7 @@ const newUserSchema = Joi.object().keys({
     password: Joi.string()
     .required()
     .min(8)
-    .max(14)
+    .max(15)
     /** Minimo una miniscula y una mayuscula y solo desde la 0-9 y a-z y A-Z */
     .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,15}$/)
     .error((errors) => {
