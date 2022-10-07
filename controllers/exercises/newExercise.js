@@ -10,16 +10,10 @@ const newExercise = async (req, res, next) => {
         connection = await getDB();
 
         //console.log(req.files.photo)
-        if (!req.files || !req.files.photo) {
-            throw generateError(
-                'No has indicado una foto nueva de producto a subir',
-                400
-            );
-        }
+        
         //Llamamos a la funcion savePhoto para que nos devueva el nombre 
         //de la foto a insertar en la BBDD
-        const photoName = await savePhoto(req.files.photo);
-        console.log(photoName)
+       
 
         const idReqUser = req.userAuth.id
         //console.log("idReqUser: " + idReqUser)
@@ -47,6 +41,17 @@ const newExercise = async (req, res, next) => {
                 400
             );
         }
+
+        if (!req.files || !req.files.photo) {
+            throw generateError(
+                'No has indicado una foto nueva de producto a subir',
+                400
+            );
+        }
+
+        const photoName = await savePhoto(req.files.photo);
+        console.log(photoName)
+
 
         // Comprobamos que no hay ningún ejercicio con el mismo nombre.
         const [exercise] = await connection.query(
