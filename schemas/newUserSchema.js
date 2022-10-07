@@ -33,7 +33,7 @@ const newUserSchema = Joi.object().keys({
     .min(8)
     .max(14)
     /** Minimo una miniscula y una mayuscula y solo desde la 0-9 y a-z y A-Z */
-    .regex(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/)
+    .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,15}$/)
     .error((errors) => {
         if(
             errors[0].code === 'any.required' || errors[0].code === 'string.empty'
