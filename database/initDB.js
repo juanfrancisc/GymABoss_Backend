@@ -62,7 +62,7 @@ async function main() {
                 ON DELETE CASCADE
               )`
         );
-        
+
         await conexion.query(
             `CREATE TABLE user_favorites_exercises (
                 id int unsigned PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -98,10 +98,10 @@ async function main() {
         console.log('Insertando ejercicios de ejemplo...');
         await conexion.query(
             `INSERT INTO exercises (idUser, title, description,  typology, photo) VALUES 
-            (1, 'Sentadillas', 'Realimos agachadillas hasta media altura y mantenemos unos segundos, nos ponemos ergidos y volvemos a comenzar. Unas 20 repeticiones con 10 segundos de descanso entre ellas','Cardio','foto.jpg')
-            ,(1, 'Abdominales', 'El ejercicio estándar de encogimiento abdominal se concentra en los músculos del estómago. Es un ejercicio eficaz y seguro que es ideal para principiantes, para ayudar a desarrollar músculos abdominales fuertes.', 'Musculacion', 'foto.jpg')
-            ,(1, 'Flexiones', 'Las flexiones son un excelente ejercicio para trabajar los músculos del pecho y los brazos. Debido a la posición que usted tiene que mantener para hacer este ejercicio correctamente, también trabaja el núcleo, abdominales, piernas y espalda. Diferentes variaciones de las flexiones plantearán un nuevo desafío los mismos grupos musculares.','Cardio', 'foto.jpg')
-            ,(1, 'Nado a Crol', 'Este estilo es de forma alternada, mientras uno de los brazos del nadador se mueve en el aire con la palma hacia abajo dispuesta a ingresar al agua, y el codo relajado, el otro brazo avanza bajo el agua','Natacion', 'foto.jpg')`
+            (1, 'Sentadillas', 'Realimos agachadillas hasta media altura y mantenemos unos segundos, nos ponemos ergidos y volvemos a comenzar. Unas 20 repeticiones con 10 segundos de descanso entre ellas','Cardio','8c8b14d7-b77f-4759-820e-bed44c33ff34.jpg')
+            ,(1, 'Abdominales', 'El ejercicio estándar de encogimiento abdominal se concentra en los músculos del estómago. Es un ejercicio eficaz y seguro que es ideal para principiantes, para ayudar a desarrollar músculos abdominales fuertes.', 'Musculacion', '72516af5-3948-48f5-80bd-4e4edd8f5fb6.jpg')
+            ,(1, 'Flexiones', 'Las flexiones son un excelente ejercicio para trabajar los músculos del pecho y los brazos. Debido a la posición que usted tiene que mantener para hacer este ejercicio correctamente, también trabaja el núcleo, abdominales, piernas y espalda. Diferentes variaciones de las flexiones plantearán un nuevo desafío los mismos grupos musculares.','Cardio', '4136c3eb-d642-42e5-9e3f-7ba26af35d09.jpg')
+            ,(1, 'Nado a Crol', 'Este estilo es de forma alternada, mientras uno de los brazos del nadador se mueve en el aire con la palma hacia abajo dispuesta a ingresar al agua, y el codo relajado, el otro brazo avanza bajo el agua','Natacion', 'a013da34-bc58-4e1e-b83c-385b8f6c5b73.jpg')`
         );
 
         console.log('Insertando datos de favorios de ejemplo....');
