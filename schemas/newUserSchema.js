@@ -33,14 +33,14 @@ const newUserSchema = Joi.object().keys({
     .min(8)
     .max(15)
     /** Minimo una miniscula y una mayuscula y solo desde la 0-9 y a-z y A-Z */
-    .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,15}$/)
+    .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&#])([A-Za-z\d$@$!%*?&#]|[^ ]){8,15}$/)
     .error((errors) => {
         if(
             errors[0].code === 'any.required' || errors[0].code === 'string.empty'
         ){
             return new Error ('La contraseña es un campo obligatorio')
         }
-        return new Error ('El contraseña debe una longitud minima de 8 caractéres, contener al menos una minuscula y una mayuscula y algún numero');
+        return new Error ('El contraseña debe una longitud minima de 8 caractéres, un máximo de 15 y contener al menos una minuscula y una mayuscula y algún numero y caracter especial');
     })
 
 });
