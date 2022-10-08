@@ -64,9 +64,13 @@ async function deletePhoto(photoName) {
 }
 
 function generateRandomPass(){
-    const caracteres = "abcdefghijkmnlopqrstuvwxyzABCDEFGHJKMNLOPQRSTUVWXYZ0123456789";
+    const symbol = "@#$&%"
     let newPassword = "";
-    for (let i = 0; i < 10 ; i++) {
+    for (let i = 0; i < 1 ; i++) {
+        newPassword +=symbol.charAt(Math.floor(Math.random()*symbol.length)); 
+    }
+    const caracteres = "abcdefghijkmnlopqrstuvwxyzABCDEFGHJKMNLOPQRSTUVWXYZ0123456789";
+    for (let i = 0; i < 9 ; i++) {
         newPassword +=caracteres.charAt(Math.floor(Math.random()*caracteres.length)); 
     }
     console.log(newPassword)
