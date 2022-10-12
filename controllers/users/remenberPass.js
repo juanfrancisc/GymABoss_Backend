@@ -53,7 +53,7 @@ const remenberPass = async (req, res, next) =>{
         const mailOptions = {
             from: USER_MAIL,
             to: usuario[0].email,
-            subjeect: `Restablecimiento de contraseña generada de la app de experiencias`,
+            subject: `Restablecimiento de contraseña generada de la app de Gym A Boss`,
             text:`La nueva contraseña generada es ${newPassword}, recueda acceder a la app y cambiar a una nueva`,
         };
 
