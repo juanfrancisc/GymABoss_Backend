@@ -53,7 +53,7 @@ async function deletePhoto(photoName) {
         let photoPath; // Variable para la ruta absoluta a la imagen a borrar
 
         photoPath = path.join(fileImageDir, photoName);
-        console.log(photoPath)
+        /* console.log(photoPath) */
         
         // Eliminamos la imagen
         await unlink(photoPath);
@@ -73,7 +73,7 @@ function generateRandomPass(){
     for (let i = 0; i < 9 ; i++) {
         newPassword +=caracteres.charAt(Math.floor(Math.random()*caracteres.length)); 
     }
-    console.log(newPassword)
+    /* console.log(newPassword) */
 
     return newPassword;
 }
