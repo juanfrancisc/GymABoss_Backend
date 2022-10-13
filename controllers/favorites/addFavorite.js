@@ -1,5 +1,5 @@
 const getDB = require('../../database/getDB');
-const { generateError } = require('../../helpers');
+
 
 //Requerimos dependencias
 
@@ -10,13 +10,10 @@ const addFavorite = async (req, res, next) => {
         connection = await getDB();
 
         //Establecemos conexión con la BBDD
-        console.log(req.userAuth);
         const idReqUser = req.userAuth.id;
-        console.log(idReqUser);
 
         //const { idUser, idExercises } = req.params;
         const { idExercises } = req.params;
-        console.log(idExercises)
 
         const [isFavorite] = await connection.query(
             `SELECT * FROM user_favorites_exercises WHERE id_user = ? AND id_exercises = ?`,
@@ -38,6 +35,7 @@ const addFavorite = async (req, res, next) => {
             res.send({
                 status: 'Ok',
                 message: 'Has marcado este ejercicio como favorito',
+                favorited: true,
                 favoritesCount: favoritesCount[0].favorites,
             });
         } else {
@@ -54,6 +52,7 @@ const addFavorite = async (req, res, next) => {
             res.send({
                 status: 'Ok',
                 message: 'Lo has quitado de tu lista de favoritos',
+                favorited: false,
                 favoritesCount: favoritesCount[0].favorites,
             });
         }

@@ -63,6 +63,7 @@ const remenberPass = require('./controllers/users/remenberPass');
 // Add Favorite
 const addFavorite = require('./controllers/favorites/addFavorite');
 const viewFavorites = require('./controllers/favorites/viewFavorites')
+const checkFavorite = require('./controllers/favorites/checkFavorite');
 
 /////////////////////////
 /** ENDPOINTS */
@@ -104,6 +105,7 @@ app.post('/addLike/:idExercises', isLogin, addLike);
 // Add Favorite
 app.post('/addFavorite/:idExercises', isLogin, addFavorite);
 app.post('/viewFavorites', isLogin, viewFavorites)
+app.get('/checkFavorite/:idExercise', isLogin, checkFavorite);
 
 /////////////////////////////////////
 /** MIDDLEWARE de ERROR y NOT FOUND*/
