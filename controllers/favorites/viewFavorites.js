@@ -24,15 +24,18 @@ const viewFavorites = async (req, res, next) => {
         if (myFavorites.length < 1){
             res.send ({
                 status: '0',
-                message: 'No tienes ejercicios marcados como favoritos'
+                message: 'No tienes ejercicios marcados como favoritos',    
             })
         } 
-        // Pero si tiene datos lo devolvemos
+
+            // Pero si tiene datos lo devolvemos
         res.send ({
             status: 'Ok',
             message: 'Estos son tus favoritos',
             data: myFavorites,
         })
+        
+        
         
     } catch (error) {
         next(error);

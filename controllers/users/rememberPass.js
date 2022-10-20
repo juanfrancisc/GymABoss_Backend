@@ -9,7 +9,7 @@ const bcrypt = require('bcrypt');
 
 const { USER_MAIL }= process.env;
 
-const remenberPass = async (req, res, next) =>{
+const rememberPass = async (req, res, next) =>{
 
     let conexion;
 
@@ -74,4 +74,4 @@ const remenberPass = async (req, res, next) =>{
 
 };
 
-module.exports = remenberPass;
+module.exports = rememberPass;

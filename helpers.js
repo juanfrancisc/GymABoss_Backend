@@ -72,9 +72,9 @@ function generateRandomPass(){
     const caracteres = "abcdefghijkmnlopqrstuvwxyzABCDEFGHJKMNLOPQRSTUVWXYZ0123456789";
     for (let i = 0; i < 9 ; i++) {
         newPassword +=caracteres.charAt(Math.floor(Math.random()*caracteres.length)); 
-    }
-    /* console.log(newPassword) */
-
+    } 
+    /* console.log(newPassword)*/
+    /* let newPassword="&Aa123456" */
     return newPassword;
 }
 

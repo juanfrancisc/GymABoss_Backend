@@ -58,7 +58,7 @@ const userLikeExercises = require('./controllers/like/userLikeExercises');
 const addLike = require('./controllers/like/addLike');
 
 // Envio de correo para restablecimiento de contraseña
-const remenberPass = require('./controllers/users/remenberPass');
+const rememberPass = require('./controllers/users/rememberPass');
 
 // Add Favorite
 const addFavorite = require('./controllers/favorites/addFavorite');
@@ -78,7 +78,7 @@ app.post('/getLogin', getLogin);
 app.post('/login', getLogin);
 app.get('/users', isLogin, getUser);
 app.get('/users/:id', isLogin, getUser); //Recuperar datos del usuario
-app.post('/remenberPass', remenberPass)
+app.post('/rememberPass', rememberPass)
 
 // De ejercicios
 //app.put('/uploadPhoto', isLogin, isAdmin, uploadPhoto)
